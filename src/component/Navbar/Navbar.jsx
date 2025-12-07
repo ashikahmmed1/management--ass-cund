@@ -22,7 +22,7 @@ navigate("/signin");
 };
 
 return (
-<div className="bg-slate-100 py-2 border-b border-b-slate-300">
+<div className="bg-blue-100 py-2 border-b border-b-slate-300">
 <MyContainer className="flex items-center justify-between">
 <figure>
 <img className="max-w-[75px] h-[60px]" src={logo} alt="logo" />
