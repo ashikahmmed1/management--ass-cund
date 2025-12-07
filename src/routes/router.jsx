@@ -34,14 +34,14 @@ export const router = createBrowserRouter(
 
         // PRIVATE ROUTES
         {
-          path: "/my-transactions",
-          element: (
-            <PrivateRoute>
-              <MyTransactions />
-            </PrivateRoute>
-          ),
-          loader: () => fetch("https://assignment-ten-serversites.vercel.app/management"),
-        },
+  path: "/my-transactions",
+  element: (
+    <PrivateRoute>
+      <MyTransactions />
+    </PrivateRoute>
+  ),
+  loader: () => fetch("https://assignment-ten-serversites.vercel.app/api/management"),
+},
         {
           path: "/add-transaction",
           element: (
@@ -74,7 +74,7 @@ export const router = createBrowserRouter(
             </PrivateRoute>
           ),
           loader: ({ params }) =>
-            fetch(`https://assignment-ten-serversites.vercel.app/management/${params.id}`),
+            fetch(`https://assignment-ten-serversites.vercel.app/api/management/${params.id}`),
         },
         {
           path: "/update-profile",
