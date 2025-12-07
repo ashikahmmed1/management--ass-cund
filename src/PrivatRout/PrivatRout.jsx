@@ -1,24 +1,30 @@
-import React, { use } from 'react';
-import { AuthContext } from '../context/AuthProvider';
-import Loader from '../component/Loaders/Loader';
-import { Navigate, useLocation } from 'react-router-dom';
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
+import Loader from "../component/Loaders/Loader";
+import { Navigate, useLocation } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
-    const {user, loading} = use(AuthContext)
-    const location = useLocation();
-    
-    
+  const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
 
-    if(loading){
-        return <Loader />
-    }
+  // Show spinner while auth state loading
+  if (loading) {
+    return <Loader />;
+  }
 
-    if(user){
-        return children;
-    }
-    return (
-        <Navigate state={location.pathname} to="/login"></Navigate>
-    );
+  // If user is logged in → allow access
+  if (user) {
+    return children;
+  }
+
+  // If not logged in → redirect to signin page
+  return (
+    <Navigate
+      to="/signin"
+      state={{ from: location.pathname }}
+      replace
+    />
+  );
 };
 
 export default PrivateRoute;
