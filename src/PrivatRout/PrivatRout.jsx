@@ -7,24 +7,16 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
 
-  // Show spinner while auth state loading
-  if (loading) {
-    return <Loader />;
-  }
+ if (loading) return <Loader />;
+if (user) return children;
 
-  // If user is logged in → allow access
-  if (user) {
-    return children;
-  }
-
-  // If not logged in → redirect to signin page
-  return (
-    <Navigate
-      to="/signin"
-      state={{ from: location.pathname }}
-      replace
-    />
-  );
+return (
+  <Navigate
+    to="/signin"
+    state={{ from: location.pathname }}
+    replace
+  />
+);
 };
 
 export default PrivateRoute;
